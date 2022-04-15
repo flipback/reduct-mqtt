@@ -1,0 +1,30 @@
+{
+  "name": "reduct-mqtt",
+  "version": "1.0.0",
+  "description": "Keep MQTT messages in Reduct Storage",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flipback/reduct-mqtt.git"
+  },
+  "keywords": [
+    "mqtt",
+    "reduct-storage",
+    "nodejs"
+  ],
+  "author": "Alexey Timin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/flipback/reduct-mqtt/issues"
+  },
+  "homepage": "https://github.com/flipback/reduct-mqtt#readme",
+  "dependencies": {
+    "async-mqtt": "^2.6.2",
+    "mqtt": "^4.3.7",
+    "reduct-js": "^0.1.0"
+  }
+}
