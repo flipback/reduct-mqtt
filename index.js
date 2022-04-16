@@ -1,28 +1,17 @@
 const MQTT = require('async-mqtt');
-const {Client, BucketSettings} = require('reduct-js');
-const {QuotaType} = require('reduct-js/lib/cjs/BucketSettings');
+const {Client} = require('reduct-js');
 
-const mqttClient = MQTT.connect('tcp://localhost:1883');
-const reductClient = new Client('http://localhost:8383');
-
-mqttClient.on('connect', async () => {
+MQTT.connectAsync('tcp://localhost:1883').then(async (mqttClient) => {
   await mqttClient.subscribe('mqtt_data');
 
-  let bucket;
-  try {
-    bucket = await reductClient.createBucket('mqtt');  // Create a bucket in the storage
-  } catch (err) {
-    console.warn('No problem if the bucket already exists: ');
-    bucket = await reductClient.getBucket('mqtt');
-  }
+  const reductClient = new Client('http://localhost:8383');
+  const bucket = await reductClient.getOrCreateBucket('mqtt');
 
-  mqttClient.on('packetreceive', async (data) => {
-    if (data.payload) {
-      const record = data.payload.toString();
-      await bucket.write('mqtt_data', record);
-      console.log('Received message "%s" is written', record);
-    }
+  mqttClient.on('message', async (topic, msg) => {
+    const data = msg.toString();
+    await bucket.write('mqtt_data', data);
+    console.log('Received message "%s" from topic "%s" is written', data,
+        topic);
   });
-});
 
-
+}).catch(error => console.error(error));
