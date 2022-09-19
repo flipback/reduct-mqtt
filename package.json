@@ -25,6 +25,6 @@
   "dependencies": {
     "async-mqtt": "^2.6.2",
     "mqtt": "^4.3.7",
-    "reduct-js": "^0.2.0"
+    "reduct-js": "^0.7.0"
   }
 }

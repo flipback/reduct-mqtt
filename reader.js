@@ -10,10 +10,9 @@ client.getBucket('mqtt').then(async (bucket) => {
   const stopTime = BigInt(Date.now() * 1000);
   const startTime = stopTime - 3_600_000_000n;
 
-  const records = await bucket.list('mqtt_data', startTime, stopTime);
-  for (const record of records) {
-    data = await bucket.read('mqtt_data', record.timestamp);
-    console.log('Found record "%s" with timestamp "%d"', data, record.timestamp);
+   for await (const record of bucket.query('mqtt_data', startTime, stopTime)) {
+    data = await record.read();
+    console.log('Found record "%s" with timestamp "%d"', data, record.time);
   }
 
 }).catch(error => console.error(error));
