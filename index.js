@@ -8,9 +8,9 @@ MQTT.connectAsync('tcp://localhost:1883').then(async (mqttClient) => {
   const bucket = await reductClient.getOrCreateBucket('mqtt');
 
   mqttClient.on('message', async (topic, msg) => {
-    const data = msg.toString();
-    await bucket.write('mqtt_data', data);
-    console.log('Received message "%s" from topic "%s" is written', data,
+    const record = await bucket.beginWrite(topic);
+    await record.write(msg)
+    console.log('Received message "%s" from topic "%s" is written', msg,
         topic);
   });
 

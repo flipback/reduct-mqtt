@@ -1,6 +1,6 @@
 # reduct-mqtt
 
-A usage example for Reduct Storage: Keep history of MQTT messages
+A usage example for ReductStore: Keep history of MQTT messages
 
 ## Running
 

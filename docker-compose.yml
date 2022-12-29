@@ -1,7 +1,7 @@
 version: "3"
 services:
   reduct-storage:
-    image: ghcr.io/reduct-storage/reduct-storage:latest
+    image: reductstore/reductstore:latest
     volumes:
       - ./data:/data
     ports:

@@ -3,8 +3,8 @@ const {Client} = require('reduct-js');
 const client = new Client('http://localhost:8383');
 
 client.getBucket('mqtt').then(async (bucket) => {
-  let data = await bucket.read('mqtt_data');
-  console.log('Last record: %s', data);
+  const record  = await bucket.beginRead('mqtt_data');
+  console.log('Last record: %s', await record.readAsString());
 
   // Get data for lash hour
   const stopTime = BigInt(Date.now() * 1000);
