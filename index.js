@@ -2,7 +2,7 @@ const MQTT = require('async-mqtt');
 const {Client} = require('reduct-js');
 
 MQTT.connectAsync('tcp://localhost:1883').then(async (mqttClient) => {
-  await mqttClient.subscribe('mqtt_data');
+  await mqttClient.subscribe('#');
 
   const reductClient = new Client('http://localhost:8383');
   const bucket = await reductClient.getOrCreateBucket('mqtt');

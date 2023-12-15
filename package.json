@@ -23,8 +23,8 @@
   },
   "homepage": "https://github.com/flipback/reduct-mqtt#readme",
   "dependencies": {
-    "async-mqtt": "^2.6.2",
-    "mqtt": "^4.3.7",
-    "reduct-js": "^1.2.0"
+    "async-mqtt": "^2.6.3",
+    "mqtt": "^5.3.3",
+    "reduct-js": "^1.7.4"
   }
 }
